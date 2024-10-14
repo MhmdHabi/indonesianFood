@@ -1,0 +1,149 @@
+@media screen and (max-width: 1200px) {
+  .hero {
+    min-width: 100%;
+  }
+
+  .hero-text h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-text p {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .hero {
+    background-image: url("../public/images/heros/hero-image_4-medium.jpg");
+    max-height: 600px;
+  }
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .hamburger-menu {
+    display: block;
+  }
+
+  .nav-drawer {
+    display: block;
+  }
+
+  .navbar {
+    background-color: #2be72b;
+    padding: 15px;
+  }
+
+  .restaurant-list {
+    margin: 40px 20px;
+  }
+
+  .hero-text h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-text p {
+    font-size: 1.2rem;
+  }
+  .nav-drawer {
+    z-index: 1300;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hero {
+    background-image: url("../public/images/heros/hero-image_4-small.jpg");
+    max-height: 400px;
+  }
+  .restaurant-list h2 {
+    font-size: 1.8rem;
+  }
+
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+  }
+
+  .about-cuisine {
+    flex-direction: column;
+    align-items: center;
+  }
+  .about-images {
+    order: -1;
+    padding: 15px;
+  }
+  .about-text {
+    width: 100%;
+    margin: 0 20px;
+    padding: 0;
+  }
+  .about-text h2 {
+    margin-top: 0;
+    padding: 0 20px;
+    font-size: 2.5rem;
+  }
+  .about-text span {
+    font-size: 2.5rem;
+  }
+  .about-text p {
+    padding: 0 25px;
+    font-size: 1rem;
+  }
+  .nav-drawer {
+    z-index: 1300;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .restaurant-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .navbar {
+    padding: 10px;
+  }
+
+  .brand-logo a h2,
+  .brand-logo a span {
+    font-size: 1.2rem;
+  }
+
+  .restaurant-list {
+    margin: 20px 0px;
+  }
+
+  .restaurant-grid {
+    padding: 20px;
+  }
+
+  .additional-info {
+    flex-direction: column;
+  }
+
+  .info-images {
+    flex-direction: column;
+  }
+
+  .image-left {
+    flex-direction: column;
+  }
+
+  .image-left img {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .nav-drawer {
+    z-index: 1300;
+  }
+}
