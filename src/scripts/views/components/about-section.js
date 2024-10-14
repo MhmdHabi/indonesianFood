@@ -31,4 +31,4 @@ class AboutSection extends HTMLElement {
   }
 }
 
-customElements.define("about-section", AboutSection);
+customElements.define('about-section', AboutSection);

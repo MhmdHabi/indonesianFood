@@ -8,11 +8,11 @@ const LoadingIndicator = {
   },
 
   show() {
-    document.querySelector(".loading-container").style.display = "flex";
+    document.querySelector('.loading-container').style.display = 'flex';
   },
 
   hide() {
-    document.querySelector(".loading-container").style.display = "none";
+    document.querySelector('.loading-container').style.display = 'none';
   },
 };
 

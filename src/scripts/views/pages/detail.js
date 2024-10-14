@@ -1,9 +1,9 @@
-import TheRestaurantSource from "../../data/therestaurant-source";
-import CONFIG from "../../globals/config";
-import LikeButtonRestaurant from "../../utils/favorite-button-resto";
-import FavoriteRestaurantIdb from "../../data/favorite-restaurant-idb";
-import LoadingIndicator from "../components/loading-indicator";
-import { createLikeButtonTemplate } from "../templates/template-creator";
+import TheRestaurantSource from '../../data/therestaurant-source';
+import CONFIG from '../../globals/config';
+import LikeButtonRestaurant from '../../utils/favorite-button-resto';
+import FavoriteRestaurantIdb from '../../data/favorite-restaurant-idb';
+import LoadingIndicator from '../components/loading-indicator';
+import { createLikeButtonTemplate } from '../templates/template-creator';
 
 const Detail = {
   async render() {
@@ -20,24 +20,24 @@ const Detail = {
   },
 
   async afterRender() {
-    const url = window.location.hash.split("/")[2];
-    const backButton = document.getElementById("backButton");
+    const url = window.location.hash.split('/')[2];
+    const backButton = document.getElementById('backButton');
 
     LoadingIndicator.show();
-    backButton.style.display = "none";
+    backButton.style.display = 'none';
 
     setTimeout(async () => {
       const restaurant = await TheRestaurantSource.getRestaurantDetail(url);
       this._displayRestaurantDetail(restaurant);
 
       LoadingIndicator.hide();
-      backButton.style.display = "block";
+      backButton.style.display = 'block';
 
-      const likeButtonContainer = document.querySelector("#likeButtonContainer");
+      const likeButtonContainer = document.querySelector('#likeButtonContainer');
       likeButtonContainer.innerHTML = createLikeButtonTemplate();
 
       LikeButtonRestaurant.init({
-        likeButtonContainer: document.querySelector("#likeButtonContainer"),
+        likeButtonContainer: document.querySelector('#likeButtonContainer'),
         favoriteRestaurant: FavoriteRestaurantIdb,
         restaurant: {
           id: restaurant.id,
@@ -55,25 +55,25 @@ const Detail = {
 
   _generateRatingStars(rating) {
     const maxStars = 5;
-    let stars = "";
+    let stars = '';
 
     for (let i = 0; i < Math.floor(rating); i++) {
-      stars += "⭐";
+      stars += '⭐';
     }
 
     if (rating % 1 !== 0) {
-      stars += "⭐️";
+      stars += '⭐️';
     }
 
     for (let i = Math.ceil(rating); i < maxStars; i++) {
-      stars += "☆";
+      stars += '☆';
     }
 
     return stars;
   },
 
   _displayRestaurantDetail(restaurant) {
-    const restaurantContainer = document.getElementById("restaurant");
+    const restaurantContainer = document.getElementById('restaurant');
     restaurantContainer.innerHTML = `\
      <picture>
           <source media="(max-width: 680px)" data-src="${CONFIG.IMAGE_BASE_URL}${restaurant.pictureId}" />
@@ -88,7 +88,7 @@ const Detail = {
 
       <div class="restaurant-categories">
         <ul class="category-list">
-          ${restaurant.categories.map((category) => `<li>${category.name}</li>`).join("")}
+          ${restaurant.categories.map((category) => `<li>${category.name}</li>`).join('')}
         </ul>
       </div>
 
@@ -98,37 +98,37 @@ const Detail = {
       <div class="menu-section">
         <h3>Menu Makanan</h3>
         <ul class="menu-list">
-          ${restaurant.menus.foods.map((food) => `<li>${food.name}</li>`).join("")}
+          ${restaurant.menus.foods.map((food) => `<li>${food.name}</li>`).join('')}
         </ul>
       </div>
 
       <div class="menu-section">
         <h3>Menu Minuman</h3>
         <ul class="menu-list">
-          ${restaurant.menus.drinks.map((drink) => `<li>${drink.name}</li>`).join("")}
+          ${restaurant.menus.drinks.map((drink) => `<li>${drink.name}</li>`).join('')}
         </ul>
       </div>
 
       <h3>Customer Reviews</h3>
       <ul class="review-list">
         ${restaurant.customerReviews
-          .map(
-            (review) => `
+    .map(
+      (review) => `
             <li class="review-item">
               <div class="review-header">
                 <strong class="review-name">${review.name}</strong>
                 <span class="review-date">${review.date}</span>
               </div>
               <p class="review-text">${review.review}</p>
-            </li>`
-          )
-          .join("")}
+            </li>`,
+    )
+    .join('')}
       </ul>
     `;
   },
 
   _renderReviewForm(restaurantId) {
-    const reviewFormContainer = document.getElementById("reviewFormContainer");
+    const reviewFormContainer = document.getElementById('reviewFormContainer');
     reviewFormContainer.innerHTML = `
       <h3>Tambah Review</h3>
       <form id="reviewForm">
@@ -144,12 +144,12 @@ const Detail = {
       </form>
     `;
 
-    const reviewForm = document.getElementById("reviewForm");
-    reviewForm.addEventListener("submit", async (event) => {
+    const reviewForm = document.getElementById('reviewForm');
+    reviewForm.addEventListener('submit', async (event) => {
       event.preventDefault();
 
-      const name = document.getElementById("name").value;
-      const review = document.getElementById("review").value;
+      const name = document.getElementById('name').value;
+      const review = document.getElementById('review').value;
 
       const reviewData = {
         id: restaurantId,
@@ -161,13 +161,13 @@ const Detail = {
         const updatedReviews = await TheRestaurantSource.addReview(reviewData);
         this._updateCustomerReviews(updatedReviews);
       } catch (error) {
-        console.error("Error submitting review:", error.message);
+        console.error('Error submitting review:', error.message);
       }
     });
   },
 
   _updateCustomerReviews(reviews) {
-    const reviewList = document.querySelector(".review-list");
+    const reviewList = document.querySelector('.review-list');
     reviewList.innerHTML = reviews
       .map(
         (review) => `
@@ -177,9 +177,9 @@ const Detail = {
               <span class="review-date">${review.date}</span>
             </div>
             <p class="review-text">${review.review}</p>
-          </li>`
+          </li>`,
       )
-      .join("");
+      .join('');
   },
 };
 

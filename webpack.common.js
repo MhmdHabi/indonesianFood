@@ -4,7 +4,8 @@ const WorkboxWebpackPlugin = require("workbox-webpack-plugin");
 const ImageminPlugin = require("imagemin-webpack-plugin").default;
 const imageminMozjpeg = require("imagemin-mozjpeg");
 const imageminPngquant = require("imagemin-pngquant");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 
 module.exports = {
@@ -87,6 +88,9 @@ module.exports = {
           quality: "50-60", // Gunakan format rentang min-max untuk PNG
         }),
       ],
+    }),
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
     }),
     new WorkboxWebpackPlugin.GenerateSW({
       swDest: "./sw.bundle.js",

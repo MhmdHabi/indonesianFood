@@ -1,9 +1,9 @@
-import TheRestaurantSource from "../../data/therestaurant-source";
-import CONFIG from "../../globals/config";
-import "../components/hero-section";
-import "../components/about-section";
-import "../components/restaurant-list";
-import "../components/galerry-section";
+import TheRestaurantSource from '../../data/therestaurant-source';
+import CONFIG from '../../globals/config';
+import '../components/hero-section';
+import '../components/about-section';
+import '../components/restaurant-list';
+import '../components/galerry-section';
 
 const HomePage = {
   visibleCount: 3,
@@ -19,38 +19,38 @@ const HomePage = {
   },
 
   async afterRender() {
-    const restaurantsContainer = document.getElementById("restaurants");
-    const showMoreButton = document.getElementById("show-more");
-    const exploreButton = document.getElementById("explore-button");
+    const restaurantsContainer = document.getElementById('restaurants');
+    const showMoreButton = document.getElementById('show-more');
+    const exploreButton = document.getElementById('explore-button');
     let restaurants = [];
 
     try {
       restaurants = await TheRestaurantSource.getRestaurants();
       this.displayRestaurants(restaurants, this.visibleCount);
 
-      exploreButton.addEventListener("click", (event) => {
+      exploreButton.addEventListener('click', (event) => {
         event.preventDefault();
-        document.getElementById("restaurant-list").scrollIntoView({ behavior: "smooth" });
+        document.getElementById('restaurant-list').scrollIntoView({ behavior: 'smooth' });
       });
 
-      showMoreButton.addEventListener("click", () => {
+      showMoreButton.addEventListener('click', () => {
         this.showAll = !this.showAll;
         this.updateDisplay(restaurants);
       });
     } catch (error) {
-      console.error("Failed to fetch restaurant data:", error);
+      console.error('Failed to fetch restaurant data:', error);
       restaurantsContainer.innerHTML = `<p>Error loading restaurants: ${error.message}</p>`;
     }
   },
 
   displayRestaurants(restaurants, count) {
-    const restaurantsContainer = document.getElementById("restaurants");
-    restaurantsContainer.innerHTML = "";
+    const restaurantsContainer = document.getElementById('restaurants');
+    restaurantsContainer.innerHTML = '';
 
     const visibleRestaurants = this.showAll ? restaurants : restaurants.slice(0, count);
     visibleRestaurants.forEach((restaurant) => {
-      const restaurantItem = document.createElement("div");
-      restaurantItem.classList.add("restaurant-item");
+      const restaurantItem = document.createElement('div');
+      restaurantItem.classList.add('restaurant-item');
       restaurantItem.innerHTML = `
           <div class="city">${restaurant.city}</div>
           <picture>
@@ -72,8 +72,8 @@ const HomePage = {
 
   updateDisplay(restaurants) {
     this.displayRestaurants(restaurants, this.visibleCount);
-    const showMoreButton = document.getElementById("show-more");
-    showMoreButton.textContent = this.showAll ? "Show Less" : "Show More";
+    const showMoreButton = document.getElementById('show-more');
+    showMoreButton.textContent = this.showAll ? 'Show Less' : 'Show More';
   },
 };
 

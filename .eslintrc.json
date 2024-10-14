@@ -5,6 +5,12 @@
     "node": true,
     "jest": true
   },
+  "globals": {
+    "Feature": "readonly",
+    "Scenario": "readonly",
+    "Before": "readonly",
+    "locate": "readonly"
+  },
   "extends": ["airbnb-base"],
   "parserOptions": {
     "ecmaVersion": 15,
@@ -20,6 +26,8 @@
     "linebreak-style": 0,
     "no-prototype-builtins": 0,
     "consistent-return": 0,
+    "max-len": "off",
+    "no-await-in-loop": "off",
     "import/extensions": [
       "error",
       "ignorePackages",

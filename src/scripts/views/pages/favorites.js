@@ -1,6 +1,6 @@
-import Swal from "sweetalert2"; // Import SweetAlert2
-import FavoriteRestaurantIdb from "../../data/favorite-restaurant-idb";
-import CONFIG from "../../globals/config";
+import Swal from 'sweetalert2'; // Import SweetAlert2
+import FavoriteRestaurantIdb from '../../data/favorite-restaurant-idb';
+import CONFIG from '../../globals/config';
 
 const Favorites = {
   async render() {
@@ -20,13 +20,12 @@ const Favorites = {
 
   async afterRender() {
     const favoriteRestaurants = await FavoriteRestaurantIdb.getAllRestaurant();
-    const restaurantListContainer = document.getElementById("favorite-restaurants");
-    const searchInput = document.getElementById("searchInput");
+    const searchInput = document.getElementById('searchInput');
 
     this._displayRestaurants(favoriteRestaurants);
 
     // Event listener untuk pencarian
-    searchInput.addEventListener("input", (event) => {
+    searchInput.addEventListener('input', (event) => {
       const keyword = event.target.value.toLowerCase();
       const filteredRestaurants = favoriteRestaurants.filter((restaurant) => restaurant.name.toLowerCase().includes(keyword));
       this._displayRestaurants(filteredRestaurants);
@@ -36,7 +35,7 @@ const Favorites = {
   },
 
   _displayRestaurants(restaurants) {
-    const restaurantListContainer = document.getElementById("favorite-restaurants");
+    const restaurantListContainer = document.getElementById('favorite-restaurants');
 
     // Jika tidak ada restoran favorit
     if (restaurants.length === 0) {
@@ -65,9 +64,9 @@ const Favorites = {
             </div>
             <button class="remove-favorite-button" data-id="${restaurant.id}">Hapus dari Favorit</button>
         </div>
-      `
+      `,
       )
-      .join("");
+      .join('');
 
     // Jika hasil pencarian tidak ada
     if (restaurants.length === 0) {
@@ -80,16 +79,16 @@ const Favorites = {
   },
 
   _addRemoveFavoriteEvent() {
-    const removeButtons = document.querySelectorAll(".remove-favorite-button");
+    const removeButtons = document.querySelectorAll('.remove-favorite-button');
     removeButtons.forEach((button) => {
-      button.addEventListener("click", async (event) => {
+      button.addEventListener('click', async (event) => {
         const restaurantId = event.target.dataset.id;
         await FavoriteRestaurantIdb.deleteRestaurant(restaurantId);
         Swal.fire({
-          title: "Restoran Dihapus!",
-          text: "Restoran dihapus dari favorit.",
-          icon: "success",
-          confirmButtonText: "OK",
+          title: 'Restoran Dihapus!',
+          text: 'Restoran dihapus dari favorit.',
+          icon: 'success',
+          confirmButtonText: 'OK',
         });
 
         this.afterRender();

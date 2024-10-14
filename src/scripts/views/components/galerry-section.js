@@ -27,4 +27,4 @@ class GallerySection extends HTMLElement {
   }
 }
 
-customElements.define("gallery-section", GallerySection);
+customElements.define('gallery-section', GallerySection);
