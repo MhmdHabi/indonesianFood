@@ -9,4 +9,4 @@ const createLikeButtonPresenterWithRestaurant = async (restaurant) => {
   });
 };
 
-export default createLikeButtonPresenterWithRestaurant;
+export { createLikeButtonPresenterWithRestaurant };
